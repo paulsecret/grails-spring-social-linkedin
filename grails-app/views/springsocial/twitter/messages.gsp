@@ -9,7 +9,7 @@
 <h3>Your Twitter ${dmListType.capitalize()} Messages</h3>
 
 
-<g:link controller="springSocialTwitter" action="messages" id="inbox">Messages</g:link>
+<g:link controller="springSocialLinkedIn" action="messages" id="inbox">Messages</g:link>
 
 <g:form controller="springSocialTwitter" action="sendDM" method="POST">
     <p>Send a message:</p>
@@ -18,11 +18,11 @@
     <g:submitButton name="submit" value="Send Message"/>
 </g:form>
 
-<g:link controller="springSocialTwitter" action="messages" id="inbox">Messages</g:link>
+<g:link controller="springSocialLinkedIn" action="messages" id="inbox">Messages</g:link>
 
     <ul class="choices">
-    <li><g:link controller="springSocialTwitter" action="messages" id="received">Inbox</g:link></li>
-    <li><g:link controller="springSocialTwitter" action="messages" id="sent">Send</g:link></li>
+    <li><g:link controller="springSocialLinkedIn" action="messages" id="received">Inbox</g:link></li>
+    <li><g:link controller="springSocialLinkedIn" action="messages" id="sent">Send</g:link></li>
     </ul>
 
 

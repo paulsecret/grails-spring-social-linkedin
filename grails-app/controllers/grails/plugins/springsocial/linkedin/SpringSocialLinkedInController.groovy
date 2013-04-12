@@ -12,11 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package grails.plugins.springsocial.twitter
+package grails.plugins.springsocial.linkedin
 
-import org.springframework.social.twitter.api.Twitter
+import grails.plugins.springsocial.linkedin.SpringSocialLinkedInUtils;
 
-class SpringSocialTwitterController {
+import org.springframework.social.linkedin.api.LinkedIn
+
+class SpringSocialLinkedInController {
 
   def twitter
   def connectionRepository
@@ -52,7 +54,7 @@ class SpringSocialTwitterController {
         break
     }
 
-    render view: SpringSocialTwitterUtils.config.twitter.page.timeLine, model: ['timeline': tweets]
+    render view: SpringSocialLinkedInUtils.config.twitter.page.timeLine, model: ['timeline': tweets]
 
   }
 
@@ -70,7 +72,7 @@ class SpringSocialTwitterController {
         profiles = twitter.friendOperations().getFriends()
         break
     }
-    render view: SpringSocialTwitterUtils.config.twitter.page.profiles, model: ['profiles': profiles]
+    render view: SpringSocialLinkedInUtils.config.twitter.page.profiles, model: ['profiles': profiles]
   }
 
   def messages = {
@@ -87,12 +89,12 @@ class SpringSocialTwitterController {
         directMessages = twitter.directMessageOperations().getDirectMessagesReceived()
         break
     }
-    render view: SpringSocialTwitterUtils.config.twitter.page.directMessages, model: ['directMessages': directMessages, 'dmListType': dmListType]
+    render view: SpringSocialLinkedInUtils.config.twitter.page.directMessages, model: ['directMessages': directMessages, 'dmListType': dmListType]
   }
 
   def trends = {
     def trends = twitter.searchOperations().getCurrentTrends()
-    render view: SpringSocialTwitterUtils.config.twitter.page.trends, model: ['trends': trends]
+    render view: SpringSocialLinkedInUtils.config.twitter.page.trends, model: ['trends': trends]
   }
 
   def tweet = {
@@ -105,11 +107,11 @@ class SpringSocialTwitterController {
     def query = params.query
     def tweets = twitter.searchOperations().search(query).getTweets()
     flash.message = "Search result for '${query}'"
-    render view: SpringSocialTwitterUtils.config.twitter.page.timeLine, model: ['timeline': tweets]
+    render view: SpringSocialLinkedInUtils.config.twitter.page.timeLine, model: ['timeline': tweets]
   }
 
   def login = {
-    render(view: SpringSocialTwitterUtils.config.twitter.page.connect)
+    render(view: SpringSocialLinkedInUtils.config.linkedin.page.connect)
   }
 
   def auth() {

@@ -29,11 +29,11 @@
 </g:form>
 
 <ul class="choices">
-    <li><g:link controller="springSocialTwitter" action="timeline" id="home">Home Timeline</g:link></li>
-    <li><g:link controller="springSocialTwitter" action="timeline" id="user">User Timeline</g:link></li>
-    <li><g:link controller="springSocialTwitter" action="timeline" id="public">Public Timeline</g:link></li>
-    <li><g:link controller="springSocialTwitter" action="timeline" id="mentions">Mentions</g:link></li>
-    <li><g:link controller="springSocialTwitter" action="timeline" id="favorites">Favorites</g:link></li>
+    <li><g:link controller="springSocialLinkedIn" action="timeline" id="home">Home Timeline</g:link></li>
+    <li><g:link controller="springSocialLinkedIn" action="timeline" id="user">User Timeline</g:link></li>
+    <li><g:link controller="springSocialLinkedIn" action="timeline" id="public">Public Timeline</g:link></li>
+    <li><g:link controller="springSocialLinkedIn" action="timeline" id="mentions">Mentions</g:link></li>
+    <li><g:link controller="springSocialLinkedIn" action="timeline" id="favorites">Favorites</g:link></li>
 </ul>
 
 <div class="feed">

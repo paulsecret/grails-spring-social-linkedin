@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package grails.plugins.springsocial.twitter;
+package grails.plugins.springsocial.linkedin;
 
-import grails.plugins.springsocial.config.TwitterReflectionUtils;
+import grails.plugins.springsocial.config.LinkedInReflectionUtils;
+import grails.plugins.springsocial.linkedin.SpringSocialLinkedInUtils;
 import grails.util.Environment;
 import groovy.lang.GroovyClassLoader;
 import groovy.util.ConfigObject;
@@ -25,11 +26,12 @@ import org.codehaus.groovy.grails.commons.ApplicationHolder;
 /**
  * Helper methods.
  */
-public final class SpringSocialTwitterUtils {
+@SuppressWarnings("deprecation")
+public final class SpringSocialLinkedInUtils {
 
     private static ConfigObject config;
 
-    private SpringSocialTwitterUtils() {
+    private SpringSocialLinkedInUtils() {
         // static only
     }
 
@@ -66,7 +68,7 @@ public final class SpringSocialTwitterUtils {
      * Force a reload of the springsocial configuration.
      */
     public static void reloadConfig() {
-        mergeConfig(TwitterReflectionUtils.getConfig(), "DefaultSpringSocialTwitterConfig");
+        mergeConfig(LinkedInReflectionUtils.getConfig(), "DefaultSpringSocialTwitterConfig");
     }
 
 
@@ -76,8 +78,9 @@ public final class SpringSocialTwitterUtils {
      * @param currentConfig the current configuration
      * @param className     the name of the config class to load
      */
-    private static void mergeConfig(final ConfigObject currentConfig, final String className) {
-        GroovyClassLoader classLoader = new GroovyClassLoader(SpringSocialTwitterUtils.class.getClassLoader());
+    @SuppressWarnings("resource")
+	private static void mergeConfig(final ConfigObject currentConfig, final String className) {
+        GroovyClassLoader classLoader = new GroovyClassLoader(SpringSocialLinkedInUtils.class.getClassLoader());
         ConfigSlurper slurper = new ConfigSlurper(Environment.getCurrent().getName());
         ConfigObject secondaryConfig;
         try {
@@ -88,7 +91,7 @@ public final class SpringSocialTwitterUtils {
         }
 
         config = mergeConfig(currentConfig, (ConfigObject) secondaryConfig.getProperty("springsocial"));
-        TwitterReflectionUtils.setConfig(config);
+        LinkedInReflectionUtils.setConfig(config);
     }
 
     /**
@@ -112,7 +115,7 @@ public final class SpringSocialTwitterUtils {
     }
 
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "unused" })
     private static <T> T getBean(final String name) {
         return (T) ApplicationHolder.getApplication().getMainContext().getBean(name);
     }

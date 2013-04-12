@@ -16,21 +16,21 @@ package grails.plugins.springsocial.config
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
-import grails.plugins.springsocial.twitter.SpringSocialTwitterUtils
+import grails.plugins.springsocial.linkedin.SpringSocialLinkedInUtils;
 
 /**
  * Helper methods in Groovy.
  *
  * @author <a href='mailto:burt@burtbeckwith.com'>Burt Beckwith</a>
  */
-class TwitterReflectionUtils {
+class LinkedInReflectionUtils {
 
-  private TwitterReflectionUtils() {
+  private LinkedInReflectionUtils() {
     // static only
   }
 
   static getConfigProperty(String name) {
-    def value = SpringSocialTwitterUtils.config
+    def value = SpringSocialLinkedInUtils.config
     for (String part in name.split('\\.')) {
       value = value."$part"
     }
@@ -38,7 +38,7 @@ class TwitterReflectionUtils {
   }
 
   static void setConfigProperty(String name, value) {
-    def config = SpringSocialTwitterUtils.config
+    def config = SpringSocialLinkedInUtils.config
     def parts = name.split('\\.') as List
     name = parts.remove(parts.size() - 1)
 

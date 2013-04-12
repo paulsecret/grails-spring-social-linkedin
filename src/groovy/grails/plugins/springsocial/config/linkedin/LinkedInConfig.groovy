@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package grails.plugins.springsocial.config.twitter
+package grails.plugins.springsocial.config.linkedin
 
-import grails.plugins.springsocial.twitter.SpringSocialTwitterUtils
+import grails.plugins.springsocial.linkedin.SpringSocialLinkedInUtils;
+
 import javax.inject.Inject
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -22,31 +23,31 @@ import org.springframework.context.annotation.Scope
 import org.springframework.context.annotation.ScopedProxyMode
 import org.springframework.social.connect.ConnectionFactory
 import org.springframework.social.connect.ConnectionRepository
-import org.springframework.social.twitter.api.Twitter
-import org.springframework.social.twitter.api.impl.TwitterTemplate
-import org.springframework.social.twitter.connect.TwitterConnectionFactory
+import org.springframework.social.linkedin.api.LinkedIn
+import org.springframework.social.linkedin.api.impl.LinkedInTemplate
+import org.springframework.social.linkedin.connect.LinkedInConnectionFactory
 import org.springframework.util.Assert
 
 @Configuration
-class TwitterConfig {
+class LinkedInConfig {
   @Inject
   ConnectionRepository connectionRepository
 
   @Bean
   ConnectionFactory twitterConnectionFactory() {
-    println "Configuring SpringSocial Twitter"
-    def twitterConfig = SpringSocialTwitterUtils.config.twitter
-    String consumerKey = twitterConfig.consumerKey ?: ""
-    String consumerSecret = twitterConfig.consumerSecret ?: ""
-    Assert.hasText(consumerKey, "The Twitter consumerKey is necessary, please add to the Config.groovy as follows: grails.plugins.springsocial.twitter.consumerKey='yourConsumerKey'")
-    Assert.hasText(consumerSecret, "The Twitter consumerSecret is necessary, please add to the Config.groovy as follows: grails.plugins.springsocial.twitter.consumerSecret='yourConsumerSecret'")
-    new TwitterConnectionFactory(consumerKey, consumerSecret)
+    println "Configuring SpringSocial LinkedIn"
+    def linkedInConfig = SpringSocialLinkedInUtils.config.linkedIn
+    String consumerKey = linkedInConfig.consumerKey ?: ""
+    String consumerSecret = linkedInConfig.consumerSecret ?: ""
+    Assert.hasText(consumerKey, "The LinkedIn consumerKey is necessary, please add to the Config.groovy as follows: grails.plugins.springsocial.linkedin.consumerKey='yourConsumerKey'")
+    Assert.hasText(consumerSecret, "The LinkedIn consumerSecret is necessary, please add to the Config.groovy as follows: grails.plugins.springsocial.linkedin.consumerSecret='yourConsumerSecret'")
+    new LinkedInConnectionFactory(consumerKey, consumerSecret)
   }
 
   @Bean
   @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
-  Twitter twitter() {
-    def twitter = connectionRepository.findPrimaryConnection(Twitter)
-    twitter != null ? twitter.getApi() : new TwitterTemplate()
+  LinkedIn linkedin() {
+    def linkedIn = connectionRepository.findPrimaryConnection(LinkedIn)
+    linkedin != null ? twitter.getApi() : new LinkedInTemplate()
   }
 }
