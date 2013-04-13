@@ -3,6 +3,7 @@
 *.iml
 plugin.xml
 target/
+target-eclipse/
 *.zip
 *.tld
 .classpath

@@ -1,1 +1,0 @@
-<g:render template="/springsocial/twitter/twitterMenu" plugin="spring-social-twitter" />

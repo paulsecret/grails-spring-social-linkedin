@@ -20,95 +20,23 @@ import org.springframework.social.linkedin.api.LinkedIn
 
 class SpringSocialLinkedInController {
 
-  def twitter
+  def linkedin
   def connectionRepository
 
   def beforeInterceptor = [action: this.&auth, except: 'login']
 
   def index = {
-    def model = ["profile": twitter.userOperations().getUserProfile()]
-    render(view: "/springsocial/twitter/index", model: model)
-  }
-
-  def timeline = {
-    def id = params.id ?: "home"
-    def tweets
-    switch (id) {
-      case "home":
-        tweets = twitter.timelineOperations().getHomeTimeline()
-        break
-      case "user":
-        tweets = twitter.timelineOperations().getUserTimeline()
-        break
-      case "public":
-        tweets = twitter.timelineOperations().getPublicTimeline()
-        break
-      case "mentions":
-        tweets = twitter.timelineOperations().getMentions()
-        break
-      case "favorites":
-        tweets = twitter.timelineOperations().getFavorites()
-        break
-      default:
-        tweets = twitter.timelineOperations().getHomeTimeline()
-        break
-    }
-
-    render view: SpringSocialLinkedInUtils.config.twitter.page.timeLine, model: ['timeline': tweets]
-
+    def model = ["profile": linkedin.getUserProfile()]
+    render(view: "/springsocial/linkedin/index", model: model)
   }
 
   def profiles = {
     def id = params.id ?: "friends"
     def profiles
-    switch (id) {
-      case "friends":
-        profiles = twitter.friendOperations().getFriends()
-        break
-      case "followers":
-        profiles = twitter.friendOperations().getFollowers()
-        break
-      default:
-        profiles = twitter.friendOperations().getFriends()
-        break
-    }
-    render view: SpringSocialLinkedInUtils.config.twitter.page.profiles, model: ['profiles': profiles]
+    profiles = linkedin.getConnections();
+    render view: SpringSocialLinkedInUtils.config.linkedin.page.profiles, model: ['profiles': profiles]
   }
-
-  def messages = {
-    def dmListType = params.id ?: 'received'
-    def directMessages
-    switch (dmListType) {
-      case 'received':
-        directMessages = twitter.directMessageOperations().getDirectMessagesReceived()
-        break
-      case 'sent':
-        directMessages = twitter.directMessageOperations().getDirectMessagesSent()
-        break
-      default:
-        directMessages = twitter.directMessageOperations().getDirectMessagesReceived()
-        break
-    }
-    render view: SpringSocialLinkedInUtils.config.twitter.page.directMessages, model: ['directMessages': directMessages, 'dmListType': dmListType]
-  }
-
-  def trends = {
-    def trends = twitter.searchOperations().getCurrentTrends()
-    render view: SpringSocialLinkedInUtils.config.twitter.page.trends, model: ['trends': trends]
-  }
-
-  def tweet = {
-    def message = params.message
-    twitter.timelineOperations().updateStatus(message)
-    redirect(action: timeline, params: [id: 'user'])
-  }
-
-  def search = {
-    def query = params.query
-    def tweets = twitter.searchOperations().search(query).getTweets()
-    flash.message = "Search result for '${query}'"
-    render view: SpringSocialLinkedInUtils.config.twitter.page.timeLine, model: ['timeline': tweets]
-  }
+  
 
   def login = {
     render(view: SpringSocialLinkedInUtils.config.linkedin.page.connect)
@@ -122,7 +50,7 @@ class SpringSocialLinkedInController {
   }
 
   Boolean isConnected() {
-    connectionRepository.findPrimaryConnection(Twitter)
+    connectionRepository.findPrimaryConnection(LinkedIn)
   }
 
 }

@@ -6,8 +6,8 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-
-        "/"(view: "/index")
+		
+        "/"(controller: "springSocialLinkedIn", action: "index")
         "500"(view: '/error')
     }
 }

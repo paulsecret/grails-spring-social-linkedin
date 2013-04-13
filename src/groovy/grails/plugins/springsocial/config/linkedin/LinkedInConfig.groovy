@@ -34,9 +34,9 @@ class LinkedInConfig {
   ConnectionRepository connectionRepository
 
   @Bean
-  ConnectionFactory twitterConnectionFactory() {
+  ConnectionFactory linkedinConnectionFactory() {
     println "Configuring SpringSocial LinkedIn"
-    def linkedInConfig = SpringSocialLinkedInUtils.config.linkedIn
+    def linkedInConfig = SpringSocialLinkedInUtils.config.get("linkedin")
     String consumerKey = linkedInConfig.consumerKey ?: ""
     String consumerSecret = linkedInConfig.consumerSecret ?: ""
     Assert.hasText(consumerKey, "The LinkedIn consumerKey is necessary, please add to the Config.groovy as follows: grails.plugins.springsocial.linkedin.consumerKey='yourConsumerKey'")
@@ -48,6 +48,6 @@ class LinkedInConfig {
   @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
   LinkedIn linkedin() {
     def linkedIn = connectionRepository.findPrimaryConnection(LinkedIn)
-    linkedin != null ? twitter.getApi() : new LinkedInTemplate()
+    linkedin != null ? linkedin.getApi() : new LinkedInTemplate()
   }
 }

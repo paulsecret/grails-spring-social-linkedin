@@ -68,7 +68,7 @@ public final class SpringSocialLinkedInUtils {
      * Force a reload of the springsocial configuration.
      */
     public static void reloadConfig() {
-        mergeConfig(LinkedInReflectionUtils.getConfig(), "DefaultSpringSocialTwitterConfig");
+        mergeConfig(LinkedInReflectionUtils.getConfig(), "DefaultSpringSocialLinkedInConfig");
     }
 
 
