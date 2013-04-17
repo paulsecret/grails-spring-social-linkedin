@@ -45,5 +45,8 @@ grails.project.dependency.resolution = {
   plugins {
     compile(":spring-security-core:1.2.4")
     compile(":spring-social-core:0.1.31")
+    build(":tomcat:$grailsVersion", ":release:2.2.0", ":rest-client-builder:1.0.3") {
+        export = false
+    }
   }
 }
