@@ -1,4 +1,4 @@
-class SpringSocialTwitterGrailsPlugin {
+class SpringSocialLinkedInGrailsPlugin {
   // the plugin version
   String version = "0.1.31"
   // the version or versions of Grails the plugin is designed for
@@ -10,8 +10,8 @@ class SpringSocialTwitterGrailsPlugin {
       "grails-app/views/error.gsp"
   ]
 
-  String author = "Domingo Suarez Torres"
-  String authorEmail = "domingo.suarez@gmail.com"
+  String author = "Ethan Gordon"
+  String authorEmail = "ekgordon2@gmail.com"
   String title = "Spring Social LinkedIn"
   String description = 'Spring Social LinkedIn plugin.'
 
