@@ -15,6 +15,8 @@
 
 def springSocialVersion = "1.0.0.RC1"
 
+grails.project.repos.default = "spantree"
+
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
