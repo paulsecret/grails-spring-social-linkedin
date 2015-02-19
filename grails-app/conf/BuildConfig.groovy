@@ -46,7 +46,6 @@ grails.project.dependency.resolution = {
 
     dependencies {
         compile "org.springframework.social:spring-social-linkedin:1.0.0.RELEASE", { transitive = false }
-        compile "javax.inject:javax.inject:1"
     }
 
     plugins {
