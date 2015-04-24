@@ -1,6 +1,6 @@
 class SpringSocialLinkedInGrailsPlugin {
   // the plugin version
-  String version = "0.2.0-SNAPSHOT"
+  String version = "0.2.0"
   // the version or versions of Grails the plugin is designed for
   String grailsVersion = "2.3.9 > *"
   // the other plugins this plugin depends on
